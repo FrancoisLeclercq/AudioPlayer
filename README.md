@@ -10,4 +10,4 @@ Play music and manage your playlists!
 
 <img src="https://i.imgur.com/qoVkapU.png" alt="Logo" width="200px">
 
-![Home page]()
+![Home page](https://i.imgur.com/OXZW1xQ.png)
