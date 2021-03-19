@@ -9,4 +9,5 @@ Play music and manage your playlists!
 - Securing the application
 - Graphic charter and ergonomics (light/dark mode)
 
+
 ![Home page](https://i.imgur.com/OXZW1xQ.png)
