@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model Music
+@{
+    ViewData["Title"] = "Delete Song";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Delete Song</h1>
+    <p id="mysongs">
+        <a class="icons" asp-area="" asp-controller="Home" asp-action="Index"><i class="fab fa-gratipay"></i>My Songs</a>
+    </p>
+    <hr />
+
+    <h3>@Model.Name</h3>
+    <p class="titleButton">Are you sure do you want delete this playlist?</p>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" id="delete" class="btn btn-danger" />
+    </form>
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}

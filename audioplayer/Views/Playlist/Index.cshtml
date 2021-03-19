@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model IEnumerable<audioplayer.Models.Playlist>
+@{
+    ViewData["Title"] = "My Playlists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>My Playlists</h1>
+    <p id="addplaylist">
+        <a class="icons" asp-action="Add"><i class="fas fa-record-vinyl"></i>Add Playlist</a>
+    </p>
+    <hr />
+
+    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        @foreach (var playlist in Model)
+        {
+            <div class="playlistCard">
+                <img src="@Html.DisplayFor(modelItem => playlist.Image)" alt="image" />
+                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <p class="playlistContainer mt-2" id="playlistName" style="min-height: 4rem;">
+                        @Html.DisplayFor(modelItem => playlist.Name)
+                    </p>
+                    <p class="playlistContainer">
+                        <a class="icons2" asp-action="Details" asp-route-id="@playlist.Id"><i class="fas fa-info-circle"></i>Details</a>
+                        <a class="icons2" asp-action="Edit" asp-route-id="@playlist.Id"><i class="fas fa-edit"></i>Edit</a>
+                        <a class="icons2" asp-action="Delete" asp-route-id="@playlist.Id"><i class="fas fa-trash-alt"></i>Delete</a>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}

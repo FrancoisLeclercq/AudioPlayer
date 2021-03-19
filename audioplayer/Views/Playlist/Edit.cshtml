@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model PlaylistMusic
+@{
+    ViewData["Title"] = "Edit Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Edit Playlist</h1>
+    <p id="myplaylists">
+        <a class="icons" asp-area="" asp-controller="Playlist" asp-action="Index"><i class="fas fa-compact-disc"></i>My Playlists</a>
+    </p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Playlist.Id" />
+
+                <div class="form-group">
+
+                    <label asp-for="Playlist.Image" class="control-label">Image (Url)</label>
+                    <input asp-for="Playlist.Image" class="form-control" />
+                    <span asp-validation-for="Playlist.Image" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="Playlist.Name" class="control-label"></label>
+                    <input asp-for="Playlist.Name" class="form-control" />
+                    <span asp-validation-for="Playlist.Name" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="Playlist.Titles" class="control-label"></label>
+                    <input type="text" id="demo" asp-for="Playlist.Titles" class="form-control" />
+                    <span asp-validation-for="Playlist.Titles" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <h6> </h6>
+                </th>
+                <th>
+                    <h6>#</h6>
+                </th>
+                <th>
+                    <h6>Name</h6>
+                </th>
+                <th>
+                    <h6>Date</h6>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    @if (Model.Music != null)
+    {
+
+        @foreach (var music in Model.Music)
+        {
+            string file = @Convert.ToBase64String(music.FileData);
+            <div class="music" style="display: flex; justify-content: space-between">
+                <button id="add" class="select-song" type='button' value="@music.Id-" onclick="addToPlaylist(this.value)"><i class="fas fa-plus-circle"></i></button>
+                <p>@music.Id</p>
+                <p>@music.Name</p>
+                <p>@music.Date</p>
+                <button id="remove" class="unselect-song" type='button' value="@music.Id-" onclick="removeToPlaylist(this.value)"><i class="fas fa-minus-circle"></i></button>
+            </div>
+        }
+    }
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            if (document.getElementById("Image").value == "") {
+                document.getElementById("Image").value = "https://cdn.dribbble.com/users/29051/screenshots/2515769/icon.png";
+            }
+        });
+    </script>
+    <script>
+        var input = document.querySelector("#demo")
+        var buttons = document.querySelectorAll("button.select-song")
+
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function (event) {
+                input.value = input.value + event.currentTarget.value
+            })
+        }
+    </script>
+    <script>
+        var input = document.querySelector("#demo")
+        var buttons = document.querySelectorAll("button.unselect-song")
+
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function (event) {
+                input.value = input.value - event.currentTarget.value
+            })
+        }
+    </script>
+}

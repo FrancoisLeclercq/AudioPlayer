@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model List<Music>
+@{
+    ViewData["Title"] = "Home";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>My Songs</h1>
+    <p id="myplaylists">
+        <a class="icons" asp-area="" asp-controller="Playlist" asp-action="Index"><i class="fas fa-compact-disc"></i>My Playlists</a>
+    </p>
+    <hr />
+
+    <p id="addsong">
+        <a asp-area="" asp-controller="Home" asp-action="Add"><i class="fas fa-music"></i>Add Song</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <h6> </h6>
+                </th>
+                <th>
+                    <h6>#</h6>
+                </th>
+                <th>
+                    <h6>Name</h6>
+                </th>
+                <th>
+                    <h6>Date</h6>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    @foreach (var music in Model)
+    {
+        string file = @Convert.ToBase64String(music.FileData);
+        <div class="music" style="display: flex; justify-content: space-between">
+            <i class="fas fa-play" onclick="wavesurfer.load('data:audio/mp3;base64,@file')"></i>
+            <p>@music.Id</p>
+            <p>@music.Name</p>
+            <p>@music.Date</p>
+            <a asp-action="Delete" asp-route-id="@music.Id">
+                <i class="fas fa-trash"></i>
+            </a>
+        </div>
+    }
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}

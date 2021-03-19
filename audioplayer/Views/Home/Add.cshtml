@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model Music
+@{
+    ViewData["Title"] = "Add Song";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Add Song</h1>
+    <p id="mysongs">
+        <a class="icons" asp-area="" asp-controller="Home" asp-action="Index"><i class="fab fa-gratipay"></i>My Songs</a>
+    </p>
+    <hr />
+
+    <form id="form" asp-action="Add" method="post" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input asp-for="Name" type="hidden" id="name" class="form-control" />
+        <input asp-for="Date" type="hidden" class="form-control" />
+
+        <i class="fas fa-plus-circle"></i>
+        <label for="file" id="filelabel">Choose a song</label>
+        <input asp-for="FileData" type="file" id="music" accept=".mp3" />
+        <span class="text-danger" style="display: none;" id="check">You need to select music to upload.</span>
+
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-success" />
+        </div>
+
+    </form>
+
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+        <script>
+            document.getElementById("music").addEventListener("change", function (e) {
+                if ((document.getElementById("music").value).substring(document.getElementById("music").value.lastIndexOf(".")) == ".mp3") {
+                    document.getElementById("name").value = e.target.files[0].name;
+                    document.getElementById("check").style.display = "none";
+                } else {
+                    document.getElementById("name").value = "";
+                    document.getElementById("check").style.display = "block";
+                }
+                console.log(document.getElementById("name").value)
+            });
+
+            document.getElementById("form").addEventListener("submit", function (e) {
+                if (document.getElementById("name").value == "") {
+                    e.preventDefault();
+                    document.getElementById("check").style.display = "block";
+                }
+            });
+        </script>
+    }
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}

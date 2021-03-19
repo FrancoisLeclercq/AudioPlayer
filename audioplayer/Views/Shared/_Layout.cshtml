@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AudioPlayer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
+        <div class="container noselect">
+            <img src="~/logo.png" style="max-width: 8%;" />
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AudioPlayer</a>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial.cshtml" />
+            </div>
+            <button id="darkTrigger"><img src="~/darkTrigger.svg" style="max-width: 80%;" /></button>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="container noselect">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted notConnected">
+        <div class="text-center noselect">
+            <button id="close">
+                <span class="fas fa-stop"></span>
+            </button>
+            <button id="previous">
+                <span class="fas fa-backward"></span>
+            </button>
+            <button id="pause">
+                <span class="far fa-pause-circle"></span>
+            </button>
+            <button id="skip">
+                <span class="fas fa-forward"></span>
+            </button>
+            <button id="mute">
+                <span class="fas fa-volume-up"></span>
+            </button>
+            <div id="wave"></div>
+        </div>
+        <div class="container noselect">
+            &copy; 2021 - AudioPlayer - <a style="color:black;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/index.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model Playlist
+@{
+    ViewData["Title"] = "Add Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Add Playlist</h1>
+    <p id="myplaylists">
+        <a class="icons" asp-area="" asp-controller="Playlist" asp-action="Index"><i class="fas fa-compact-disc"></i>My Playlists</a>
+    </p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form id="form" asp-action="Add">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label">Image (Url)</label>
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            if (document.getElementById("Image").value == "") {
+                document.getElementById("Image").value = "https://cdn.dribbble.com/users/29051/screenshots/2515769/icon.png";
+            }
+        });
+    </script>
+}

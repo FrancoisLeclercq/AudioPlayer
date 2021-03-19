@@ -1,0 +1,311 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/* Dark Mode
+-------------------------------------------------- */
+.dark * {
+    color: #ffffff !important;
+    border-color: #333 !important;
+    background-color: #181818 !important;
+}
+
+.dark:hover * {
+    color: #ffffff !important;
+    border-color: #333 !important;
+    background-color: #181818 !important;
+}
+
+#darkTrigger {
+    outline: 0;
+    border: none;
+    background: transparent;
+    color: #ffffff !important;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Supported by Chrome, Edge, Opera and Firefox */
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #000000;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2b9bf4;
+    border-color: #2b9bf4;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #2b9bf4;
+    border-color: #2b9bf4;
+    /*#7b58e1*/
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+}
+
+body {
+  /* Margin bottom by footer height */
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.navbar {
+    height: 100px;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.footer {
+    width: 100%;
+    height: 10rem;
+    min-height: 10rem;
+    padding-top: 1rem;
+    white-space: nowrap;
+}
+
+#wave {
+    width: 50%;
+    opacity: 0.75;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px !important;
+}
+
+#wave wave {
+    height: 80px !important;
+}
+
+/* Home Page, body*/
+.text-center {
+   background-color: none;
+}
+
+.text-center > button {
+    outline: 0;
+    border: none;
+    background: transparent;
+}
+
+.text-center > button > img {
+    width: 30px;
+    height: 30px;
+}
+
+.icons {
+    font-size: large;
+}
+
+.icons2 {
+    font-size: 16px;
+}
+
+.icons > i {
+    margin-right: 3px;
+}
+
+.icons2 > i {
+    margin-right: 3px;
+}
+
+#addsong > a > i {
+    margin-right: 5px;
+}
+
+#logout {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+.btn-danger {
+    width: 50%;
+    font-size: x-large;
+    margin-left: 25%;
+}
+
+.btn-success {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.titleButton {
+    margin-top: 10%;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Navigation Button */
+.icons > img {
+    width: 30px;
+    height: 30px;
+}
+
+#pause {
+    transform: scale(1.6);
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#myplaylists {
+    outline: 0;
+    border: none;
+    background: transparent;
+    text-align: right;
+}
+
+#addplaylist {
+    outline: 0;
+    border: none;
+    background: transparent;
+    text-align: right;
+}
+
+#mysongs {
+    outline: 0;
+    border: none;
+    background: transparent;
+    text-align: right;
+}
+
+#addsong {
+    text-align: center;
+    font-size: 30px;
+    margin: 2rem 0px 2.25rem 0px;
+    color: black;
+    border: 2px;
+}
+
+#addsong > a > img {
+    width: 60px;
+    height: 60px;
+}
+
+.music > #add {
+    outline: 0;
+    border: none;
+    background: transparent;
+    margin-bottom: auto;
+}
+
+.music > #remove {
+    outline: 0;
+    border: none;
+    background: transparent;
+    margin-bottom: auto;
+}
+
+/* Playlist Card */
+.playlistCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.2s;
+    width: 22%;
+    border-radius: 5px;
+    margin : 1%;
+}
+
+.playlistCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7);
+}
+
+.playlistCard > img {
+    border-radius: 5px 5px 0 0;
+    max-width: 100%;
+    min-height: 65%;
+}
+
+.playlistContainer {
+    padding: 2px 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#playlistName {
+    font-weight: bold;
+    font-size: 19px;
+    padding-bottom: 5px;
+    max-width: 100%;
+}
+
+/* Playlist Details */
+
+.playlistImage {
+    border-radius:5px;
+    height: 300px;
+    width: 300px;
+    margin-top: -5.5%;
+}
+
+.playlistName {
+    margin-left:30%;
+}
+
+.playlistTitles {
+    padding-top:1%;
+}
+
+.playlistEdit {
+    margin-top: 100px;
+    margin-left: 30%;
+}
+
+.svg-inline--fa .fa-pause-circle .fa-w-16 {
+    width: 30px;
+    height: 30px;
+}

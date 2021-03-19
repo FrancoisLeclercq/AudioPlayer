@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using audioplayer.Areas.Identity.Data
+
+@inject SignInManager<audioplayerUser> SignInManager
+@inject UserManager<audioplayerUser> UserManager
+
+@model PlaylistMusic
+@{
+    ViewData["Title"] = "Details Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Playlist Details</h1>
+    <p id="myplaylists">
+        <a class="icons" asp-controller="Playlist" asp-action="Index"><i class="fas fa-compact-disc"></i>My Playlists</a>
+    </p>
+    <hr />
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                <h2 class="playlistName">@Html.DisplayFor(model => model.Playlist.Name)</h2>
+            </dt>
+            <dt>
+                <a class="icons2 playlistEdit" asp-action="Edit" asp-route-id="@Model.Playlist.Id"><i class="fas fa-edit"></i>Edit</a>
+            </dt>
+            <dt>
+                <img class="playlistImage" src="@Html.DisplayFor(model => model.Playlist.Image)" alt="image" />
+            </dt>
+            <dt>
+                <h5 class="playlistTitles">@Html.DisplayNameFor(model => model.Playlist.Titles)</h5>
+            </dt>
+        </dl>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <h6> </h6>
+                </th>
+                <th>
+                    <h6>#</h6>
+                </th>
+                <th>
+                    <h6>Name</h6>
+                </th>
+                <th>
+                    <h6>Date</h6>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    @if (Model.Music != null)
+    {
+        @foreach (var music in Model.Music)
+        {
+            if (music.FileData != null)
+            {
+                string file = @Convert.ToBase64String(music.FileData);
+                <div class="music" style="display: flex; justify-content: space-between">
+                    <p class="fas fa-play" onclick="wavesurfer.load('data:audio/mp3;base64,@file')"></p>
+                    <p>@music.Id</p>
+                    <p>@music.Name</p>
+                    <p>@music.Date</p>
+                    <p> </p>
+                </div>
+            }
+        }
+    }
+}
+else
+{
+    <h3 style="text-align:center; margin-top:10%;">Please connect to or create a AudioPlayer account to start a new experience. This will enable powerful security and customization services.</h3>
+    <img src="~/login.png" style="margin-top:5%; margin-left:25%;" />
+    <style>
+        .notConnected {
+            display: none;
+        }
+    </style>
+}
+
