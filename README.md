@@ -8,6 +8,6 @@ Play music and manage your playlists!
 - Securing the application
 - Graphic charter and ergonomics (light/dark mode)
 
-<img src="https://imgur.com/a/Qi9Yngb.png" alt="Logo" width="200px">
+<img src="https://i.imgur.com/qoVkapU.png" alt="Logo" width="200px">
 
 ![Home page]()
