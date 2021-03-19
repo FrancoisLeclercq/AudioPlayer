@@ -1,5 +1,5 @@
 # AudioPlayer
-<img src="https://i.imgur.com/qoVkapU.png" alt="Logo" width="200px">
+<img src="https://i.imgur.com/qoVkapU.png" alt="Logo" width="150px">
 Play music and manage your playlists!
 
 ### Lots to love:
